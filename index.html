@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SO Belum Tarik - Form Alasan Action</title>
+<style>
+body{font-family:Inter,sans-serif;background:#f5f5f0;margin:0;padding:12px}
+.card{background:#fff;border-radius:16px;padding:16px;margin:0 auto;max-width:600px;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+.btn{background:#000;color:#fff;border:none;padding:14px;border-radius:10px;font-weight:900;width:100%;font-size:16px;margin:6px 0;cursor:pointer}
+.btn2{background:#fff;color:#000;border:2px solid #000;padding:12px;border-radius:10px;font-weight:700;width:100%}
+.badge{display:inline-block;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:700}
+.yellow{background:#fef9c3} .gray{background:#f3f3f3} .black{background:#000;color:#fff}
+input,select,textarea{width:100%;padding:12px;border:2px solid #000;border-radius:10px;margin:6px 0;font-size:15px;box-sizing:border-box}
+textarea{height:80px}
+.editable{background:#fffde7 !important;border:2px solid #f59e0b !important}
+.locked{background:#f5f5f5 !important;color:#666}
+.count{display:flex;gap:8px;margin:12px 0}
+.count div{flex:1;background:#fff;border:2px solid #000;border-radius:12px;padding:10px;text-align:center}
+</style>
+</head><body>
+<div class="card">
+<h2 style="margin:0 0 4px">Form SO Belum Tarik</h2>
+<div style="font-size:13px;color:#666;margin-bottom:8px">ISI ALASAN • ACTION • TINDAK LANJUT</div>
+<div style="font-size:11px;word-break:break-all;background:#f3f3f3;padding:8px;border-radius:8px">Sheet: 1BjcfoF5_0y7fuloiNH6_loXq6c0C0Kh0qazgz5fniU gid 0<br><a href="https://docs.google.com/spreadsheets/d/1BjcfoF5_0y7fuloiNH6_loXq6c0C0Kh0qazgz5fniU/export?format=csv&gid=0" target="_blank">Buka CSV</a></div>
+
+<div class="count">
+<div><b id="total">0</b><br><small>TOTAL SO</small></div>
+<div style="background:#000;color:#fff"><b id="sudah">0</b><br><small>SUDAH DIISI</small></div>
+<div><b id="belum">0</b><br><small>BELUM DIISI</small></div>
+</div>
+
+<button class="btn" onclick="cekUpdate()">🔄 CEK UPDATE (Tarik Sheet)</button>
+<button class="btn2" onclick="generateWA()">📱 GENERATE WA</button>
+
+<div id="status" style="margin:10px 0;padding:10px;border-radius:10px;display:none"></div>
+
+<div style="margin:12px 0">
+<label>Pilih NOMOR OJ:</label>
+<select id="ojSelect" onchange="loadOJ()"><option value="">-- CEK UPDATE dulu --</option></select>
+</div>
+
+<div id="formArea" style="display:none">
+<div style="background:#f5f5f5;padding:10px;border-radius:10px;margin:10px 0">
+<div><b>TGL INPUT:</b> <span id="f_tgl"></span></div>
+<div><b>NO OJ:</b> <span id="f_oj"></span></div>
+<div><b>PELANGGAN:</b> <span id="f_pelanggan"></span></div>
+<div><b>SALES:</b> <span id="f_sales"></span></div>
+</div>
+
+<label>ALASAN BELUM TARIK ✏️ BISA DIISI:</label>
+<textarea id="f_alasan" class="editable" placeholder="Contoh: Rpk, Sld, Gudang Luar NK14"></textarea>
+
+<label>ACTIONNYA ✏️ BISA DIISI:</label>
+<textarea id="f_action" class="editable" placeholder="Contoh: Tagih piutang, Ambil gdg luar 29/10"></textarea>
+
+<label>TINDAK LANJUT ACTION ✏️ BISA DIISI:</label>
+<textarea id="f_tindak" class="editable" placeholder="Contoh: Sudah ditagih 28/10, Sudah diambil"></textarea>
+
+<label>TGL RENCANA TARIK 🔒 LOCK:</label>
+<input id="f_rencana" class="locked" readonly>
+
+<button class="btn" onclick="simpan()">💾 SIMPAN</button>
+</div>
+
+<div style="margin:16px 0">
+<h3>Data SO:</h3>
+<div id="list" style="max-height:300px;overflow:auto;border:2px solid #000;border-radius:10px"></div>
+</div>
+
+<div style="margin:16px 0">
+<h3>Laporan WA Siap Copy:</h3>
+<textarea id="waReport" style="height:200px" placeholder="Klik GENERATE WA dulu"></textarea>
+<button class="btn2" onclick="copyWA()">📋 COPY WA</button>
+<button class="btn" onclick="shareWA()">📤 SHARE VIA WA</button>
+</div>
+
+<div style="background:#fef3c7;padding:12px;border-radius:10px;margin-top:12px;font-size:13px">
+<b>Cara Publish biar CEK UPDATE bisa di HP lain:</b><br>
+1. Buka Sheet 1BjcfoF5... > File > Share > Publish to web<br>
+2. Link: pilih gid 0, format CSV, Publish<br>
+3. Tunggu 1 menit, CEK UPDATE lagi
+</div>
+</div>
+
+<script>
+let allData = [];
+let key='so_belum_tarik_1BjcfoF5';
+
+function parseCSV(text){
+  const lines=text.trim().split('\n');
+  const rows=[];
+  for(let line of lines){
+    // Simple CSV split handling quotes
+    let result=[];
+    let cur=''; let inQ=false;
+    for(let i=0;i<line.length;i++){
+      let c=line[i];
+      if(c=='"'){ inQ=!inQ; }
+      else if(c==',' && !inQ){ result.push(cur.trim()); cur=''; }
+      else cur+=c;
+    }
+    result.push(cur.trim());
+    rows.push(result);
+  }
+  return rows;
+}
+
+function cekUpdate(){
+  const url='https://docs.google.com/spreadsheets/d/1BjcfoF5_0y7fuloiNH6_loXq6c0C0Kh0qazgz5fniU/export?format=csv&gid=0';
+  document.getElementById('status').style.display='block';
+  document.getElementById('status').innerHTML='⏳ Menarik data dari Sheet...';
+  fetch(url).then(r=>{
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    return r.text();
+  }).then(text=>{
+    let rows=parseCSV(text);
+    if(rows.length<2) throw new Error('Sheet kosong');
+    // Skip header
+    allData=[];
+    for(let i=1;i<rows.length;i++){
+      let r=rows[i];
+      if(r.length<2 || !r[1]) continue;
+      // Expected: TGL, NO OJ, PELANGGAN, SALES, ALASAN, ACTION, TINDAK LANJUT, RENCANA, STATUS
+      allData.push({
+        tgl:r[0]||'', oj:r[1]||'', pelanggan:r[2]||'', sales:r[3]||'',
+        alasan:r[4]||'', action:r[5]||'', tindak:r[6]||'',
+        rencana:r[7]||'', status:r[8]||'',
+        filled: (r[4]||r[5]||r[6]) ? true : false
+      });
+    }
+    localStorage.setItem(key, JSON.stringify(allData));
+    render();
+    document.getElementById('status').innerHTML='✅ Berhasil tarik '+allData.length+' SO! Last: '+new Date().toLocaleString();
+    document.getElementById('status').style.background='#dcfce7';
+  }).catch(err=>{
+    // Try localStorage
+    let saved=localStorage.getItem(key);
+    if(saved){
+      allData=JSON.parse(saved);
+      render();
+      document.getElementById('status').innerHTML='⚠️ Gagal tarik Sheet (belum Publish atau CSP blokir di preview), pakai data offline '+allData.length+' SO. Error: '+err.message+'<br><br>Di hosting real GitHub Pages akan bisa kalau sudah Publish to web > CSV.';
+      document.getElementById('status').style.background='#fef9c3';
+    } else {
+      // Sample data
+      allData=[
+        {tgl:'16/10/26',oj:'OJ 889',pelanggan:'Ujang Mainan',sales:'',alasan:'Gudang Luar NK14',action:'Ambil gdg luar 29/10',tindak:'Sudah diambil 29/10',rencana:'29/10/26',status:'BELUM TARIK',filled:true},
+        {tgl:'17/10/26',oj:'OJ 979',pelanggan:'Terminal',sales:'',alasan:'Rpk Windmill',action:'GB 31/10',tindak:'Sudah Rpk, GB 31/10',rencana:'31/10/26',status:'BELUM TARIK',filled:true},
+        {tgl:'22/10/26',oj:'OJ/26/10/01263',pelanggan:'Jaya Mulya Blitar',sales:'YDA',alasan:'',action:'',tindak:'',rencana:'',status:'HARUS FINISH',filled:false},
+      ];
+      render();
+      document.getElementById('status').innerHTML='⚠️ Gagal tarik Sheet (preview sandbox blokir fetch eksternal), pakai data sample 3 SO. Publish Sheet dulu, lalu buka di GitHub Pages, CEK UPDATE akan bisa.<br>Error: '+err.message;
+      document.getElementById('status').style.background='#fecaca';
+    }
+  });
+}
+
+function render(){
+  let total=allData.length;
+  let sudah=allData.filter(d=>d.filled).length;
+  let belum=total-sudah;
+  document.getElementById('total').innerText=total;
+  document.getElementById('sudah').innerText=sudah;
+  document.getElementById('belum').innerText=belum;
+  
+  let sel=document.getElementById('ojSelect');
+  sel.innerHTML='<option value="">-- Pilih OJ --</option>';
+  allData.forEach((d,i)=>{
+    let opt=document.createElement('option');
+    opt.value=i;
+    opt.text=d.oj+' - '+d.pelanggan+' '+(d.filled?'✅':'⏳');
+    sel.appendChild(opt);
+  });
+  
+  let list=document.getElementById('list');
+  list.innerHTML='';
+  allData.forEach((d,i)=>{
+    let div=document.createElement('div');
+    div.style.padding='8px'; div.style.borderBottom='1px solid #ddd';
+    div.innerHTML=`<b>${d.oj}</b> - ${d.pelanggan}<br><small>${d.tgl} | ${d.sales} | ${d.status}</small><br>
+    Alasan: ${d.alasan||'-'}<br>Action: ${d.action||'-'}<br>Tindak: ${d.tindak||'-'} ${d.filled?'✅':''}`;
+    list.appendChild(div);
+  });
+}
+
+function loadOJ(){
+  let idx=document.getElementById('ojSelect').value;
+  if(idx==='') { document.getElementById('formArea').style.display='none'; return; }
+  let d=allData[idx];
+  document.getElementById('f_tgl').innerText=d.tgl;
+  document.getElementById('f_oj').innerText=d.oj;
+  document.getElementById('f_pelanggan').innerText=d.pelanggan;
+  document.getElementById('f_sales').innerText=d.sales;
+  document.getElementById('f_rencana').value=d.rencana;
+  document.getElementById('f_alasan').value=d.alasan;
+  document.getElementById('f_action').value=d.action;
+  document.getElementById('f_tindak').value=d.tindak;
+  document.getElementById('formArea').style.display='block';
+  document.getElementById('formArea').dataset.idx=idx;
+}
+
+function simpan(){
+  let idx=document.getElementById('formArea').dataset.idx;
+  if(idx===undefined) return;
+  let d=allData[idx];
+  d.alasan=document.getElementById('f_alasan').value;
+  d.action=document.getElementById('f_action').value;
+  d.tindak=document.getElementById('f_tindak').value;
+  d.filled = (d.alasan||d.action||d.tindak) ? true : false;
+  localStorage.setItem(key, JSON.stringify(allData));
+  alert('✅ Disimpan! '+d.oj);
+  render();
+}
+
+function generateWA(){
+  let txt='*LAPORAN SO BELUM TARIK - '+new Date().toLocaleDateString()+'*\n\n';
+  txt+='Total: '+allData.length+' | Sudah: '+allData.filter(d=>d.filled).length+' | Belum: '+allData.filter(d=>!d.filled).length+'\n\n';
+  allData.forEach(d=>{
+    txt+=`*${d.oj}* - ${d.pelanggan}\n`;
+    txt+=`Tgl: ${d.tgl} | Sales: ${d.sales} | Status: ${d.status}\n`;
+    txt+=`Alasan: ${d.alasan||'-'}\n`;
+    txt+=`Action: ${d.action||'-'}\n`;
+    txt+=`Tindak Lanjut: ${d.tindak||'-'}\n`;
+    txt+=`Rencana: ${d.rencana}\n\n`;
+  });
+  document.getElementById('waReport').value=txt;
+}
+
+function copyWA(){
+  let ta=document.getElementById('waReport');
+  ta.select(); document.execCommand('copy');
+  alert('Tercopy!');
+}
+
+function shareWA(){
+  let txt=document.getElementById('waReport').value;
+  if(!txt){ alert('Generate WA dulu'); return; }
+  window.open('https://wa.me/?text='+encodeURIComponent(txt),'_blank');
+}
+
+// Load offline on start
+(function(){
+  let saved=localStorage.getItem(key);
+  if(saved){ allData=JSON.parse(saved); render(); }
+})();
+</script>
+</body></html>

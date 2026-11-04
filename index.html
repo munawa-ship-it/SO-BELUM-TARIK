@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SO Belum Tarik - PUB Fix</title>
-<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=DLEMVZlLhr0iATN6S1_oovnAyewVEA_SP0xCj82cU6LIa2G26k0PSkSm2WO6xRHUky97Usd4fbLXcipfvi-iMHHaZ2-qOJ-1rd0mytCw5YMf35dcJZZCX10_sHnR2jPBoGJvQgZj2qTISqS2GCVKkMIfBm8NgS7eLw-FSaMkMYLP_35qSjv1LuR2bIm7gv_h6nUnTK2R6Q6CxMoMdL4stEANGdLwQicQuUQsUSmcA5enyYtTp39HN3Cvt_FmUoTcZu8M4ozW8S0iOVCiPqB2cw" charset="UTF-8"></script><style>body{font-family:Inter,sans-serif;background:#f5f5f0;margin:0;padding:12px}.card{background:#fff;border-radius:16px;padding:16px;margin:0 auto;max-width:650px;box-shadow:0 2px 10px rgba(0,0,0,0.1)}.btn{background:#000;color:#fff;border:none;padding:14px;border-radius:10px;font-weight:900;width:100%;font-size:16px;margin:6px 0;cursor:pointer}.btn2{background:#fff;color:#000;border:2px solid #000;padding:12px;border-radius:10px;font-weight:700;width:100%}input,select,textarea{width:100%;padding:12px;border:2px solid #000;border-radius:10px;margin:6px 0;font-size:15px;box-sizing:border-box}.editable{background:#fffde7!important;border:2px solid #f59e0b!important}.locked{background:#f5f5f5!important;color:#666}.count{display:flex;gap:8px;margin:12px 0}.count div{flex:1;border:2px solid #000;border-radius:12px;padding:10px;text-align:center}</style>
+<title>SO Belum Tarik - Final</title>
+<style>
+body{font-family:Inter,sans-serif;background:#f5f5f0;margin:0;padding:12px}
+.card{background:#fff;border-radius:16px;padding:16px;margin:0 auto;max-width:650px;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+.btn{background:#000;color:#fff;border:none;padding:14px;border-radius:10px;font-weight:900;width:100%;font-size:16px;margin:6px 0;cursor:pointer}
+.btn2{background:#fff;color:#000;border:2px solid #000;padding:12px;border-radius:10px;font-weight:700;width:100%}
+input,select,textarea{width:100%;padding:12px;border:2px solid #000;border-radius:10px;margin:6px 0;font-size:15px;box-sizing:border-box}
+.editable{background:#fffde7!important;border:2px solid #f59e0b!important}
+.locked{background:#f5f5f5!important;color:#666}
+.count{display:flex;gap:8px;margin:12px 0}
+.count div{flex:1;border:2px solid #000;border-radius:12px;padding:10px;text-align:center}
+</style>
 </head><body>
 <div class="card">
-<h2>Form SO Belum Tarik - PUB FIX</h2>
-<div style="font-size:11px;background:#dcfce7;padding:10px;border-radius:10px">
-✅ Sudah di Publish! Paste link PUB CSV di bawah biar CEK UPDATE bisa
-</div>
-
-<div style="margin:12px 0">
-<label>Paste Link PUB CSV dari File > Publish to web:</label>
-<input id="pubUrl" placeholder="https://docs.google.com/spreadsheets/d/e/2PACX-.../pub?gid=0&single=true&output=csv" value="">
-<div style="font-size:12px;color:#666">Contoh: https://docs.google.com/spreadsheets/d/e/2PACX-1v.../pub?gid=0&single=true&output=csv</div>
-<button class="btn2" onclick="savePub()">💾 SIMPAN LINK PUB</button>
+<h2>Form SO Belum Tarik</h2>
+<div style="font-size:10px;background:#dcfce7;padding:8px;border-radius:8px;word-break:break-all">
+✅ FINAL PUB: https://docs.google.com/spreadsheets/d/e/2PACX-1vQ-ZXhjDIk9o7N1I7CZzfenz3PXmn8hIg6q2psASOCO_bfjS0ZkzPj_yO-9p4pu6Tr8YLn725QtWjky/pub?gid=0&single=true&output=csv<br>
+<a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ-ZXhjDIk9o7N1I7CZzfenz3PXmn8hIg6q2psASOCO_bfjS0ZkzPj_yO-9p4pu6Tr8YLn725QtWjky/pub?gid=0&single=true&output=csv" target="_blank">Buka CSV</a> | Sheet: 1BjcfoF5_0y7fuloiNH6_loXq6c0C0Kh0qazgz5fniU gid 0
 </div>
 
 <div class="count">
-<div><b id="total">0</b><br><small>TOTAL</small></div>
-<div style="background:#000;color:#fff"><b id="sudah">0</b><br><small>SUDAH</small></div>
-<div><b id="belum">0</b><br><small>BELUM</small></div>
+<div><b id="total">0</b><br><small>TOTAL SO</small></div>
+<div style="background:#000;color:#fff"><b id="sudah">0</b><br><small>SUDAH DIISI</small></div>
+<div><b id="belum">0</b><br><small>BELUM DIISI</small></div>
 </div>
 
-<button class="btn" onclick="cekUpdate()">🔄 CEK UPDATE (Pakai Link PUB)</button>
+<button class="btn" onclick="cekUpdate()">🔄 CEK UPDATE (Tarik Sheet)</button>
 <button class="btn2" onclick="generateWA()">📱 GENERATE WA</button>
 
 <div id="status" style="margin:10px 0;padding:10px;border-radius:10px;display:none"></div>
@@ -35,15 +39,15 @@
 <div id="formArea" style="display:none">
 <div style="background:#f5f5f5;padding:10px;border-radius:10px">
 <b id="f_oj"></b> - <span id="f_pelanggan"></span><br>
-<small id="f_tgl"></small> | <span id="f_sales"></span>
+<small id="f_tgl"></small> | <span id="f_sales"></span> | <span id="f_status"></span>
 </div>
 <label>ALASAN BELUM TARIK ✏️:</label>
-<textarea id="f_alasan" class="editable"></textarea>
+<textarea id="f_alasan" class="editable" placeholder="Isi alasan..."></textarea>
 <label>ACTIONNYA ✏️:</label>
-<textarea id="f_action" class="editable"></textarea>
+<textarea id="f_action" class="editable" placeholder="Isi action..."></textarea>
 <label>TINDAK LANJUT ✏️:</label>
-<textarea id="f_tindak" class="editable"></textarea>
-<label>TGL RENCANA 🔒:</label>
+<textarea id="f_tindak" class="editable" placeholder="Isi tindak lanjut..."></textarea>
+<label>TGL RENCANA TARIK 🔒:</label>
 <input id="f_rencana" class="locked" readonly>
 <button class="btn" onclick="simpan()">💾 SIMPAN</button>
 </div>
@@ -52,24 +56,16 @@
 <div id="list" style="max-height:300px;overflow:auto;border:2px solid #000;border-radius:10px"></div>
 
 <h3>Laporan WA:</h3>
-<textarea id="waReport" style="height:200px"></textarea>
+<textarea id="waReport" style="height:250px"></textarea>
 <button class="btn2" onclick="copyWA()">📋 COPY WA</button>
 <button class="btn" onclick="shareWA()">📤 SHARE WA</button>
-
-<div style="background:#fef3c7;padding:12px;border-radius:10px;margin-top:12px;font-size:13px">
-<b>Cara dapat Link PUB CSV:</b><br>
-1. Buka Sheet 1BjcfoF5... > File > Share > Publish to web<br>
-2. Publish sebagai CSV > Copy link yang muncul (mulai https://docs.google.com/spreadsheets/d/e/2PACX-...)<br>
-3. Paste di atas > Simpan > CEK UPDATE
-</div>
 </div>
 
 <script>
-let allData=[]; let key='so_belum_tarik_pub_fix'; let pubKey='so_pub_url';
-let defaultUrls=[
-  'https://docs.google.com/spreadsheets/d/1BjcfoF5_0y7fuloiNH6_loXq6c0C0Kh0qazgz5fniU/export?format=csv&gid=0',
-  'https://docs.google.com/spreadsheets/d/1BjcfoF5_0y7fuloiNH6_loXq6c0C0Kh0qazgz5fniU/gviz/tq?tqx=out:csv&gid=0'
-];
+const PUB_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ-ZXhjDIk9o7N1I7CZzfenz3PXmn8hIg6q2psASOCO_bfjS0ZkzPj_yO-9p4pu6Tr8YLn725QtWjky/pub?gid=0&single=true&output=csv";
+let allData=[]; 
+let key='so_belum_tarik_final_pub';
+let pubKey='so_pub_final';
 
 function parseCSV(text){
   const lines=text.trim().split('\n'); const rows=[];
@@ -87,50 +83,42 @@ function parseCSV(text){
   return rows;
 }
 
-function savePub(){
-  let url=document.getElementById('pubUrl').value.trim();
-  if(!url){ alert('Paste link PUB dulu'); return; }
-  localStorage.setItem(pubKey, url);
-  alert('✅ Link PUB disimpan! Klik CEK UPDATE');
-}
-
 async function cekUpdate(){
   let status=document.getElementById('status');
   status.style.display='block';
   status.style.background='#fef3c7';
-  status.innerHTML='⏳ Mencoba CEK UPDATE...<br>';
+  status.innerHTML='⏳ CEK UPDATE dari PUB link...<br>'+PUB_URL.substring(0,70)+'...<br>';
   
-  let pubUrl=localStorage.getItem(pubKey) || document.getElementById('pubUrl').value.trim();
-  let urls=[];
-  if(pubUrl) urls.push(pubUrl);
-  urls = urls.concat(defaultUrls);
+  let urls=[PUB_URL, localStorage.getItem(pubKey)].filter(Boolean);
+  urls.push('https://docs.google.com/spreadsheets/d/1BjcfoF5_0y7fuloiNH6_loXq6c0C0Kh0qazgz5fniU/export?format=csv&gid=0');
+  urls.push('https://docs.google.com/spreadsheets/d/1BjcfoF5_0y7fuloiNH6_loXq6c0C0Kh0qazgz5fniU/gviz/tq?tqx=out:csv&gid=0');
 
   for(let url of urls){
     try{
-      status.innerHTML+='Coba: '+url.substring(0,80)+'...<br>';
       let r=await fetch(url);
       if(!r.ok) throw new Error('HTTP '+r.status);
       let text=await r.text();
-      if(text.includes('<HTML') || text.includes('<!DOCTYPE') || text.includes('<html')) throw new Error('Bukan CSV - masih HTML login');
+      if(text.includes('<HTML') || text.includes('<!DOCTYPE') || text.trim().startsWith('<')) throw new Error('Bukan CSV - masih HTML');
       let rows=parseCSV(text);
       if(rows.length<2) throw new Error('CSV kosong');
       allData=[];
       for(let i=1;i<rows.length;i++){
         let r=rows[i];
-        if(!r[1]) continue;
+        if(!r[0] && !r[1]) continue;
         allData.push({tgl:r[0]||'',oj:r[1]||'',pelanggan:r[2]||'',sales:r[3]||'',alasan:r[4]||'',action:r[5]||'',tindak:r[6]||'',rencana:r[7]||'',status:r[8]||'',filled:(r[4]||r[5]||r[6])?true:false});
       }
       localStorage.setItem(key, JSON.stringify(allData));
+      localStorage.setItem(pubKey, PUB_URL);
       render();
-      status.innerHTML='✅ Berhasil! '+allData.length+' SO dari '+url.substring(0,60)+'<br>'+new Date().toLocaleString();
+      status.innerHTML='✅ Berhasil tarik '+allData.length+' SO dari Sheet!<br>'+new Date().toLocaleString()+'<br>'+url.substring(0,80);
       status.style.background='#dcfce7';
       return;
     }catch(e){
-      status.innerHTML+='❌ Gagal: '+e.message+'<br>';
+      status.innerHTML+='❌ Gagal '+url.substring(0,40)+'... : '+e.message+'<br>';
     }
   }
   let saved=localStorage.getItem(key);
-  if(saved){ allData=JSON.parse(saved); render(); status.innerHTML+='<br>⚠️ Pakai data offline '+allData.length+' SO. Paste link PUB yang benar di atas.'; }
+  if(saved){ allData=JSON.parse(saved); render(); status.innerHTML+='<br>⚠️ Pakai data offline '+allData.length+' SO.'; status.style.background='#fecaca'; }
 }
 
 function render(){
@@ -140,12 +128,12 @@ function render(){
   let sel=document.getElementById('ojSelect'); sel.innerHTML='<option value="">-- Pilih OJ --</option>';
   allData.forEach((d,i)=>{ let o=document.createElement('option'); o.value=i; o.text=d.oj+' - '+d.pelanggan+' '+(d.filled?'✅':'⏳'); sel.appendChild(o); });
   let list=document.getElementById('list'); list.innerHTML='';
-  allData.forEach(d=>{ let div=document.createElement('div'); div.style.padding='8px'; div.style.borderBottom='1px solid #ddd'; div.innerHTML=`<b>${d.oj}</b> - ${d.pelanggan}<br><small>${d.tgl} | ${d.status}</small><br>Alasan:${d.alasan||'-'}<br>Action:${d.action||'-'}<br>Tindak:${d.tindak||'-'}`; list.appendChild(div); });
+  allData.forEach(d=>{ let div=document.createElement('div'); div.style.padding='8px'; div.style.borderBottom='1px solid #ddd'; div.innerHTML=`<b>${d.oj}</b> - ${d.pelanggan}<br><small>${d.tgl} | ${d.status} | ${d.sales}</small><br>Alasan:${d.alasan||'-'}<br>Action:${d.action||'-'}<br>Tindak:${d.tindak||'-'}<br>Rencana:${d.rencana||'-'}`; list.appendChild(div); });
 }
 function loadOJ(){
   let idx=document.getElementById('ojSelect').value; if(idx===''){document.getElementById('formArea').style.display='none';return;}
   let d=allData[idx];
-  document.getElementById('f_tgl').innerText=d.tgl; document.getElementById('f_oj').innerText=d.oj; document.getElementById('f_pelanggan').innerText=d.pelanggan; document.getElementById('f_sales').innerText=d.sales; document.getElementById('f_rencana').value=d.rencana;
+  document.getElementById('f_tgl').innerText=d.tgl; document.getElementById('f_oj').innerText=d.oj; document.getElementById('f_pelanggan').innerText=d.pelanggan; document.getElementById('f_sales').innerText=d.sales; document.getElementById('f_status').innerText=d.status; document.getElementById('f_rencana').value=d.rencana;
   document.getElementById('f_alasan').value=d.alasan; document.getElementById('f_action').value=d.action; document.getElementById('f_tindak').value=d.tindak;
   document.getElementById('formArea').style.display='block'; document.getElementById('formArea').dataset.idx=idx;
 }
@@ -162,11 +150,6 @@ function generateWA(){
 }
 function copyWA(){ let ta=document.getElementById('waReport'); ta.select(); document.execCommand('copy'); alert('Tercopy!'); }
 function shareWA(){ let txt=document.getElementById('waReport').value; if(!txt){alert('Generate dulu');return;} window.open('https://wa.me/?text='+encodeURIComponent(txt),'_blank'); }
-(function(){
-  let pub=localStorage.getItem(pubKey);
-  if(pub) document.getElementById('pubUrl').value=pub;
-  let saved=localStorage.getItem(key);
-  if(saved){ allData=JSON.parse(saved); render(); }
-})();
+(function(){ let saved=localStorage.getItem(key); if(saved){ allData=JSON.parse(saved); render(); } })();
 </script>
 </body></html>

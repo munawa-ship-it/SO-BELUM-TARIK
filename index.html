@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SO Belum Tarik - Fix 404</title>
-<style>
-body{font-family:Inter,sans-serif;background:#f5f5f0;margin:0;padding:12px}
-.card{background:#fff;border-radius:16px;padding:16px;margin:0 auto;max-width:650px;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
-.btn{background:#000;color:#fff;border:none;padding:14px;border-radius:10px;font-weight:900;width:100%;font-size:16px;margin:6px 0;cursor:pointer}
-.btn2{background:#fff;color:#000;border:2px solid #000;padding:12px;border-radius:10px;font-weight:700;width:100%}
-input,select,textarea{width:100%;padding:12px;border:2px solid #000;border-radius:10px;margin:6px 0;font-size:15px;box-sizing:border-box}
-.editable{background:#fffde7 !important;border:2px solid #f59e0b !important}
-.locked{background:#f5f5f5 !important;color:#666}
-.count{display:flex;gap:8px;margin:12px 0}
-.count div{flex:1;border:2px solid #000;border-radius:12px;padding:10px;text-align:center}
-</style>
+<title>SO Belum Tarik - PUB Fix</title>
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=DLEMVZlLhr0iATN6S1_oovnAyewVEA_SP0xCj82cU6LIa2G26k0PSkSm2WO6xRHUky97Usd4fbLXcipfvi-iMHHaZ2-qOJ-1rd0mytCw5YMf35dcJZZCX10_sHnR2jPBoGJvQgZj2qTISqS2GCVKkMIfBm8NgS7eLw-FSaMkMYLP_35qSjv1LuR2bIm7gv_h6nUnTK2R6Q6CxMoMdL4stEANGdLwQicQuUQsUSmcA5enyYtTp39HN3Cvt_FmUoTcZu8M4ozW8S0iOVCiPqB2cw" charset="UTF-8"></script><style>body{font-family:Inter,sans-serif;background:#f5f5f0;margin:0;padding:12px}.card{background:#fff;border-radius:16px;padding:16px;margin:0 auto;max-width:650px;box-shadow:0 2px 10px rgba(0,0,0,0.1)}.btn{background:#000;color:#fff;border:none;padding:14px;border-radius:10px;font-weight:900;width:100%;font-size:16px;margin:6px 0;cursor:pointer}.btn2{background:#fff;color:#000;border:2px solid #000;padding:12px;border-radius:10px;font-weight:700;width:100%}input,select,textarea{width:100%;padding:12px;border:2px solid #000;border-radius:10px;margin:6px 0;font-size:15px;box-sizing:border-box}.editable{background:#fffde7!important;border:2px solid #f59e0b!important}.locked{background:#f5f5f5!important;color:#666}.count{display:flex;gap:8px;margin:12px 0}.count div{flex:1;border:2px solid #000;border-radius:12px;padding:10px;text-align:center}</style>
 </head><body>
 <div class="card">
-<h2>Form SO Belum Tarik - FIX 404</h2>
-<div style="font-size:11px;background:#f3f3f3;padding:8px;border-radius:8px;word-break:break-all">ID: 1BjcfoF5_0y7fuloiNH6_loXq6c0C0Kh0qazgz5fniU gid 0<br>
-<a href="https://docs.google.com/spreadsheets/d/1BjcfoF5_0y7fuloiNH6_loXq6c0C0Kh0qazgz5fniU/edit" target="_blank">Buka Sheet</a> | 
-<a href="https://docs.google.com/spreadsheets/d/1BjcfoF5_0y7fuloiNH6_loXq6c0C0Kh0qazgz5fniU/export?format=csv&gid=0" target="_blank">Test CSV Export</a>
+<h2>Form SO Belum Tarik - PUB FIX</h2>
+<div style="font-size:11px;background:#dcfce7;padding:10px;border-radius:10px">
+✅ Sudah di Publish! Paste link PUB CSV di bawah biar CEK UPDATE bisa
+</div>
+
+<div style="margin:12px 0">
+<label>Paste Link PUB CSV dari File > Publish to web:</label>
+<input id="pubUrl" placeholder="https://docs.google.com/spreadsheets/d/e/2PACX-.../pub?gid=0&single=true&output=csv" value="">
+<div style="font-size:12px;color:#666">Contoh: https://docs.google.com/spreadsheets/d/e/2PACX-1v.../pub?gid=0&single=true&output=csv</div>
+<button class="btn2" onclick="savePub()">💾 SIMPAN LINK PUB</button>
 </div>
 
 <div class="count">
@@ -26,7 +22,7 @@ input,select,textarea{width:100%;padding:12px;border:2px solid #000;border-radiu
 <div><b id="belum">0</b><br><small>BELUM</small></div>
 </div>
 
-<button class="btn" onclick="cekUpdate()">🔄 CEK UPDATE (Coba 3 URL)</button>
+<button class="btn" onclick="cekUpdate()">🔄 CEK UPDATE (Pakai Link PUB)</button>
 <button class="btn2" onclick="generateWA()">📱 GENERATE WA</button>
 
 <div id="status" style="margin:10px 0;padding:10px;border-radius:10px;display:none"></div>
@@ -61,19 +57,19 @@ input,select,textarea{width:100%;padding:12px;border:2px solid #000;border-radiu
 <button class="btn" onclick="shareWA()">📤 SHARE WA</button>
 
 <div style="background:#fef3c7;padding:12px;border-radius:10px;margin-top:12px;font-size:13px">
-<b>Kalau masih HTTP 404, lakukan ini di Sheet 1BjcfoF5...:</b><br>
-1. Buka Sheet > File > Share > Publish to web<br>
-2. Dropdown 1: Pilih Sheet1 (gid 0) - Bukan Entire Document<br>
-3. Dropdown 2: Pilih <b>Comma-separated values (.csv)</b><br>
-4. Klik Publish > OK<br>
-5. Juga: Share > General access > Anyone with link can view<br>
-6. Tunggu 1 menit, buka link Test CSV Export di atas - harusnya download CSV<br>
-7. Baru CEK UPDATE lagi di sini
+<b>Cara dapat Link PUB CSV:</b><br>
+1. Buka Sheet 1BjcfoF5... > File > Share > Publish to web<br>
+2. Publish sebagai CSV > Copy link yang muncul (mulai https://docs.google.com/spreadsheets/d/e/2PACX-...)<br>
+3. Paste di atas > Simpan > CEK UPDATE
 </div>
 </div>
 
 <script>
-let allData=[]; let key='so_belum_tarik_1BjcfoF5_fix';
+let allData=[]; let key='so_belum_tarik_pub_fix'; let pubKey='so_pub_url';
+let defaultUrls=[
+  'https://docs.google.com/spreadsheets/d/1BjcfoF5_0y7fuloiNH6_loXq6c0C0Kh0qazgz5fniU/export?format=csv&gid=0',
+  'https://docs.google.com/spreadsheets/d/1BjcfoF5_0y7fuloiNH6_loXq6c0C0Kh0qazgz5fniU/gviz/tq?tqx=out:csv&gid=0'
+];
 
 function parseCSV(text){
   const lines=text.trim().split('\n'); const rows=[];
@@ -91,29 +87,31 @@ function parseCSV(text){
   return rows;
 }
 
-async function tryFetch(url){
-  let r=await fetch(url);
-  if(!r.ok) throw new Error('HTTP '+r.status+' untuk '+url);
-  return r.text();
+function savePub(){
+  let url=document.getElementById('pubUrl').value.trim();
+  if(!url){ alert('Paste link PUB dulu'); return; }
+  localStorage.setItem(pubKey, url);
+  alert('✅ Link PUB disimpan! Klik CEK UPDATE');
 }
 
 async function cekUpdate(){
   let status=document.getElementById('status');
   status.style.display='block';
   status.style.background='#fef3c7';
-  status.innerHTML='⏳ Mencoba 3 URL...<br>';
-
-  const urls=[
-    'https://docs.google.com/spreadsheets/d/1BjcfoF5_0y7fuloiNH6_loXq6c0C0Kh0qazgz5fniU/export?format=csv&gid=0',
-    'https://docs.google.com/spreadsheets/d/1BjcfoF5_0y7fuloiNH6_loXq6c0C0Kh0qazgz5fniU/gviz/tq?tqx=out:csv&gid=0',
-    'https://docs.google.com/spreadsheets/d/1BjcfoF5_0y7fuloiNH6_loXq6c0C0Kh0qazgz5fniU/export?format=csv'
-  ];
+  status.innerHTML='⏳ Mencoba CEK UPDATE...<br>';
+  
+  let pubUrl=localStorage.getItem(pubKey) || document.getElementById('pubUrl').value.trim();
+  let urls=[];
+  if(pubUrl) urls.push(pubUrl);
+  urls = urls.concat(defaultUrls);
 
   for(let url of urls){
     try{
-      status.innerHTML+='Coba: '+url+'<br>';
-      let text=await tryFetch(url);
-      if(text.includes('<HTML') || text.includes('<!DOCTYPE')) throw new Error('Bukan CSV, masih HTML login - Sheet belum Publish');
+      status.innerHTML+='Coba: '+url.substring(0,80)+'...<br>';
+      let r=await fetch(url);
+      if(!r.ok) throw new Error('HTTP '+r.status);
+      let text=await r.text();
+      if(text.includes('<HTML') || text.includes('<!DOCTYPE') || text.includes('<html')) throw new Error('Bukan CSV - masih HTML login');
       let rows=parseCSV(text);
       if(rows.length<2) throw new Error('CSV kosong');
       allData=[];
@@ -124,25 +122,15 @@ async function cekUpdate(){
       }
       localStorage.setItem(key, JSON.stringify(allData));
       render();
-      status.innerHTML='✅ Berhasil! URL: '+url+'<br>'+allData.length+' SO. '+new Date().toLocaleString();
+      status.innerHTML='✅ Berhasil! '+allData.length+' SO dari '+url.substring(0,60)+'<br>'+new Date().toLocaleString();
       status.style.background='#dcfce7';
       return;
     }catch(e){
       status.innerHTML+='❌ Gagal: '+e.message+'<br>';
     }
   }
-  // Fallback local
   let saved=localStorage.getItem(key);
-  if(saved){ allData=JSON.parse(saved); render(); status.innerHTML+='<br>⚠️ Pakai data offline '+allData.length+' SO. Publish sheet dulu biar bisa tarik baru.'; }
-  else {
-    allData=[
-      {tgl:'16/10/26',oj:'OJ 889',pelanggan:'Ujang Mainan',sales:'',alasan:'Gudang Luar NK14',action:'Ambil gdg luar 29/10',tindak:'Sudah diambil 29/10',rencana:'29/10/26',status:'BELUM TARIK',filled:true},
-      {tgl:'17/10/26',oj:'OJ 979',pelanggan:'Terminal',sales:'',alasan:'Rpk Windmill',action:'GB 31/10',tindak:'Sudah Rpk, GB 31/10',rencana:'31/10/26',status:'BELUM TARIK',filled:true},
-    ];
-    render();
-    status.innerHTML+='<br>Pakai sample 2 SO. Error 404 karena Sheet belum di-Publish to web > CSV.';
-    status.style.background='#fecaca';
-  }
+  if(saved){ allData=JSON.parse(saved); render(); status.innerHTML+='<br>⚠️ Pakai data offline '+allData.length+' SO. Paste link PUB yang benar di atas.'; }
 }
 
 function render(){
@@ -174,6 +162,11 @@ function generateWA(){
 }
 function copyWA(){ let ta=document.getElementById('waReport'); ta.select(); document.execCommand('copy'); alert('Tercopy!'); }
 function shareWA(){ let txt=document.getElementById('waReport').value; if(!txt){alert('Generate dulu');return;} window.open('https://wa.me/?text='+encodeURIComponent(txt),'_blank'); }
-(function(){ let s=localStorage.getItem(key); if(s){ allData=JSON.parse(s); render(); } })();
+(function(){
+  let pub=localStorage.getItem(pubKey);
+  if(pub) document.getElementById('pubUrl').value=pub;
+  let saved=localStorage.getItem(key);
+  if(saved){ allData=JSON.parse(saved); render(); }
+})();
 </script>
 </body></html>
